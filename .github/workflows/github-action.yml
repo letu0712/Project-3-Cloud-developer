@@ -1,0 +1,35 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ "ci" ]
+  pull_request:
+    branches: [ "ci" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    # creates images
+    - run: 'docker build -t udagram-frontend ./udagram-frontend'
+    - run: 'docker build -t udagram-reverseproxy ./udagram-reverseproxy'
+    - run: 'docker build -t udagram-api-feed ./udagram-api-feed'
+    - run: 'docker build -t udagram-api-user ./udagram-api-user'
+
+    # tags images to docker
+    - run: 'docker tag udagram-frontend letu071299/udagram-frontend:v1'
+    - run: 'docker tag udagram-reverseproxy letu071299/udagram-reverseproxy:v1'
+    - run: 'docker tag udagram-api-feed letu071299/udagram-api-feed:v1'
+    - run: 'docker tag udagram-api-user letu071299/udagram-api-user:v1'
+
+    # logins to DockerHub
+    - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
+
+    # pushes to DockerHub
+    - run: 'docker push letu071299/udagram-reverseproxy:v1'
+    - run: 'docker push letu071299/udagram-api-feed:v1'
+    - run: 'docker push letu071299/udagram-api-user:v1'
+    - run: 'docker push letu071299/udagram-frontend:v1'
