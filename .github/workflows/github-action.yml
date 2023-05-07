@@ -15,12 +15,12 @@ jobs:
     - uses: actions/checkout@v3
     # creates images
     - run: 'docker build -t udagram-frontend ./udagram-frontend'
-    - run: 'docker build -t udagram-reverseproxy ./udagram-reverseproxy'
+    - run: 'docker build -t reverseproxy ./udagram-reverseproxy'
     - run: 'docker build -t udagram-api-feed ./udagram-api-feed'
     - run: 'docker build -t udagram-api-user ./udagram-api-user'
 
     # tags images to docker
-    - run: 'docker tag udagram-reverseproxy letu071299/udagram-reverseproxy:v4a'
+    - run: 'docker tag reverseproxy letu071299/udagram-reverseproxy:v4a'
     - run: 'docker tag udagram-api-feed letu071299/udagram-api-feed:v4a'
     - run: 'docker tag udagram-api-user letu071299/udagram-api-user:v4a'
     - run: 'docker tag udagram-frontend letu071299/udagram-frontend:local'
