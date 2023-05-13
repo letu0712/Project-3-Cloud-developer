@@ -19,7 +19,7 @@ jobs:
     - run: docker tag udagram-api-feed letu071299/udagram-api-feed:v1
     - run: docker tag reverseproxy letu071299/reverseproxy:v1
     - run: echo "${{secrets.DOCKER_PASSWORD}}" | docker login -u "${{secrets.DOCKER_USERNAME}}" --password-stdin
-    - run: docker push letu071299/udagram-frontend:v2
+    - run: docker push letu071299/udagram-frontend:v1
     - run: docker push letu071299/udagram-api-user:v1
     - run: docker push letu071299/udagram-api-feed:v1
     - run: docker push letu071299/reverseproxy:v1
