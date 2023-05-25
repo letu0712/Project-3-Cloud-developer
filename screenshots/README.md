@@ -1,3 +1,6 @@
+# NOTE
+I don't have credit card to register free-trial package on Travis-ci. So, I used Github Actions instead of Travis. I also took a screenshot as evidence and placed it in the screenshots folder
+
 # Screenshots
 To help review your infrastructure, please include the following screenshots in this directory::
 
